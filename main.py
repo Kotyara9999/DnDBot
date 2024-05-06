@@ -5,7 +5,7 @@ from discord.ext import commands
 from discord.ui import Button, View
 import random
 
-TOKEN = "MTIzMDUzMjgyMDUzMTgxMDMxNQ.G5IStC.iCpEV9Qre_MD4VUfQFcYgIjJWhp8VNb3Xn-Bo8"
+TOKEN = ""
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.'''
