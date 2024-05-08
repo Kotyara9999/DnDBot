@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 from discord.ui import Button, View
 import random
+from dnd_su_monster import Monser_Card
 
 TOKEN = ""
 
@@ -18,6 +19,7 @@ bot = commands.Bot(command_prefix='?', description=description, intents=intents)
 chan = None
 moved = {}
 ids = {}
+
 
 @bot.event
 async def on_ready():
@@ -72,6 +74,16 @@ async def mbw(ctx):
         except:
             pass
     await chan.delete()
+
+
+@bot.command()
+async def get_monster(ctx: discord.ext.commands.Context, name):
+    card = Monser_Card(name)
+    mons_data: str = card.get_monster()
+    if len(mons_data) > 4000:
+        while '\n\n' in mons_data:
+            await ctx.send(mons_data[:mons_data.find("\n\n")])
+            mons_data = mons_data[mons_data.find("\n\n") + 2:]
 
 
 @bot.command()
