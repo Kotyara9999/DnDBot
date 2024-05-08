@@ -80,9 +80,16 @@ async def mbw(ctx):
 async def get_monster(ctx: discord.ext.commands.Context, name):
     card = Monser_Card(name)
     mons_data: str = card.get_monster()
-    if len(mons_data) > 4000:
+    if len(mons_data) > 2000:
         while '\n\n' in mons_data:
-            await ctx.send(mons_data[:mons_data.find("\n\n")])
+            try:
+                await ctx.send(mons_data[:mons_data.find("\n\n")])
+            except BaseException:
+                a = mons_data[:mons_data.find("\n\n")]
+                n = len(a) // 2000 + 1
+                for i in range(n):
+                    await ctx.send(a[(i * 2000):min((i + 1) * 2000, len(a))])
+
             mons_data = mons_data[mons_data.find("\n\n") + 2:]
 
 
